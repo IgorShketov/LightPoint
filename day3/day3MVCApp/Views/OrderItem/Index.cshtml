@@ -1,0 +1,25 @@
+﻿@model IEnumerable<day3MVCApp.Data.OrderItem>
+@{
+    ViewBag.Title = "All Order's items:";
+}
+
+<table class="table">
+    <tr><td>Id</td><td>Order Name</td><td>Total Price</td><td></td><td></td></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.OrderId</td>
+            <td>
+                <a asp-controller="OrderItem" asp-action="Update" asp-route-id="@item.Id">Edit</a>
+            </td>
+            <td>
+                <a asp-controller="OrderItem" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-controller="OrderItem" asp-action="Create" class="btn btn-default btn-default">
+    Add New Order item
+</a>
