@@ -1,0 +1,6 @@
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\bin\Debug\TemplateMethod.exe.config
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\bin\Debug\TemplateMethod.exe
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\bin\Debug\TemplateMethod.pdb
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\obj\Debug\TemplateMethod.csprojResolveAssemblyReference.cache
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\obj\Debug\TemplateMethod.exe
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\TemplateMethod\obj\Debug\TemplateMethod.pdb

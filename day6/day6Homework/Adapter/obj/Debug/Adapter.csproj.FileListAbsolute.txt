@@ -1,0 +1,6 @@
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\bin\Debug\Adapter.exe.config
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\bin\Debug\Adapter.exe
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\bin\Debug\Adapter.pdb
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\obj\Debug\Adapter.csprojResolveAssemblyReference.cache
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\obj\Debug\Adapter.exe
+D:\__Microsoft VS2012 codes\C# codes\lightPoint\day6\day6Homework\Adapter\obj\Debug\Adapter.pdb
