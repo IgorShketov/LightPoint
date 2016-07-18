@@ -1,0 +1,175 @@
+﻿html {
+    height:100%;
+    margin:0px;
+}
+
+body{
+    height:100%;
+    margin:0px;
+    background: url(http://static1.grsites.com/archive/textures/beige/beige001.jpg) repeat
+}
+
+.wrapper{
+    position: relative;
+    min-height: 100%;
+}
+
+.content {
+    padding-top:5%;
+    padding-left:10%;
+    width:90%;
+}
+
+.header {
+    position:relative;
+    height:60px;
+    background-size: cover;
+    text-transform: uppercase;
+    background-color:whitesmoke;
+    border:solid;
+    border-color:lavender;
+    border-width:1px;
+    width:95%;
+    color:turquoise;
+    font-size:20px;
+    text-align:center;
+}
+
+.pageContent {
+    background-color:white;
+    position:relative;
+    width:95%;
+    padding-top:10px;
+    padding-bottom:20px;
+}
+
+.left {
+    position:relative;
+    width:50%;
+    margin-right:20px;
+    display:inline-block;
+}
+
+.pictureDescription {
+    position:relative;
+    width:100%;
+}
+
+.descriptionElement {
+    margin:5px;
+    font-size:12px;
+    text-align:center;
+    position:relative;
+    width:20%;
+    display:inline-block;
+}
+
+.right {
+    position:absolute;
+    top:20%;
+    border-left:medium;
+    border-left-width:3px;
+    border-left-color:silver;
+    display:inline-block;
+    width:45%;
+    max-height:75%;
+    font-size:26px;
+}
+
+.line { 
+    border-left: 2px solid #ccc;
+    padding-left: 10px;
+}
+
+.button {
+    background:linear-gradient(to right, #a1b4f2, #3443ee);
+    border: none;
+    color: white;
+    margin:20px;
+    width:40%;
+    padding: 15px 32px;
+    text-decoration: none;
+    display:block;
+    font-size: 24px;
+}
+
+.footer {
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:99%;
+    background-color:gainsboro;
+    border:solid;
+    border-width:1px;
+}
+
+.ribbonLeft {
+  display: inline-block;
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 15px;
+  background: #59324C;
+  left: -8px;
+  top: 10px;
+  color:white;
+  font-size:16px;
+}
+
+.ribbonLeft:before, .ribbonLeft:after {
+    content: "";
+    position: absolute;
+}
+.ribbonLeft:before {
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid black;
+  border-left: 8px solid transparent;
+  top: -8px;
+  left: 0;
+}
+.ribbonLeft:after {
+    height: 0;
+    width: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #59324C;
+    right: -15px;
+}
+
+.ribbonRight {
+  display: inline-block;
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 15px;
+  background:#2361e1;
+  right: -8px;
+  top: 10px;
+  color:white;
+  font-size:16px;
+}
+
+.ribbonRight:before, .ribbonRight:after {
+    content: "";
+    position: absolute;
+}
+.ribbonRight:before {
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid black;
+  border-right: 8px solid transparent;
+  top: -8px;
+  right: 0;
+}
+.ribbonRight:after {
+  height: 0;
+  width: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #2361e1;
+  left: -15px;
+}
