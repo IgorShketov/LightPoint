@@ -1,0 +1,114 @@
+title>
+        .animObj {
+            top: 0px;
+            min-height: 250px;
+            min-width: 250px;
+            animation: bckgrCng 2s infinite ease-in-out;
+        }
+
+        .loader {
+            position: relative;
+            height: 300px;
+            width: 300px;
+            top: 200px;
+            left: 200px;
+            transform-origin: center;
+            animation: loadAnim 2s infinite linear;
+        }
+
+        .circle1 {
+            position: absolute;
+            top: 0px;
+            left: calc(50% - 25px);
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+        .circle2 {
+            position: absolute;
+            right: 5%; /*200 * 5% + 50*/
+            top: calc(25% - 5%);
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+        .circle3 {
+            position: absolute;
+            right: 5%;
+            bottom: calc(25% - 5%);
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+        .circle4 {
+            position: absolute;
+            left: calc(50% - 25px);
+            bottom: 0px;
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+        .circle5 {
+            position: absolute;
+            left: 5%;
+            top: calc(25% - 5%);
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+        .circle6 {
+            position: absolute;
+            left: 5%;
+            bottom: calc(25% - 5%);
+            width: 50px;
+            height: 50px;
+            background: red;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+            border-radius: 25px;
+        }
+
+
+        @keyframes loadAnim {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bckgrCng {
+            from {
+                background-color: blue;
+            }
+
+            50% {
+                background-color: red;
+            }
+
+            to {
+                background-color: forestgreen;
+            }
+        }

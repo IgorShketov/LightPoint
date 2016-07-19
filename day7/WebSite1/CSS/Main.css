@@ -33,6 +33,7 @@
 .leftMenu {
     position:relative;
     width:20%;
+    height:100%;
     background-color:gainsboro;
     border:solid;
     border-width:2px;
@@ -47,6 +48,7 @@
     border-width:2px;
     display:inline-block;
     width:80%;
+    height:100%;
     overflow:hidden;
     white-space:nowrap;
     text-overflow:ellipsis;
