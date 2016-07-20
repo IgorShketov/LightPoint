@@ -1,0 +1,134 @@
+﻿html, body{
+    height:100%;
+    margin:0px;
+}
+
+.wrapper{
+    position: relative;
+    min-height: 100%;
+}
+
+.content {
+    padding-top:20px;
+    padding-bottom: 40px;
+}
+
+.header {
+    position:relative;
+    margin-left:20px;
+    margin-bottom:20px;
+    height:10%;
+    background-color:gainsboro;
+    border:solid;
+    border-width:2px;
+    width:95%;
+}
+
+.pageContent {
+    margin-left:20px;
+    position:relative;
+    width:90%;
+}
+
+.leftMenu {
+    position:relative;
+    width:20%;
+    background-color:gainsboro;
+    border:solid;
+    border-width:2px;
+    display:inline-block;
+}
+
+.contentBody {
+    position:relative;
+    margin-left:20px;
+    width:90%;
+    /*overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;*/
+}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.contentTable {
+    width:100%;
+}
+
+.NColumn {
+    width:10%;
+}
+
+.nameColumn {
+    width:20%;
+}
+
+.priceColumn {
+    width:20%;
+}
+
+.nameColumn:hover {
+    cursor:pointer;
+    border:inset;
+}
+
+.priceColumn:hover {
+    cursor:pointer;
+    border:inset;
+}
+
+.descriptionColumn {
+    width:50%;
+}
+
+.popup{
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.popup .popup-content{
+    margin:40px auto 0px auto;
+    width:25%;
+    padding:10px;
+    background-color: #c5c5c5;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.inputItem {
+    margin-left:5%;
+    margin-bottom:10px;
+    margin-top:10px;
+    width:90%;
+}
+
+.addButton {
+    margin-left:30%;
+    margin-bottom:10px;
+    margin-top:10px;
+    width:40%;
+}
+
+
+
+.footer {
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:99%;
+    background-color:gainsboro;
+    border:solid;
+    border-width:1px;
+}

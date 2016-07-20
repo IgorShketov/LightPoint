@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="CSS/Main.css" rel="stylesheet">
+    <script src="Shop.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <title>Hello web!</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="header">
+                <h2>Welcome!</h2>
+            </div>
+            <div class="contentBody">
+                <table class="contentTable" id="productsTable">
+                </table>
+            </div>
+        </div>
+
+        <button onclick="PopUpShow()">Add new product</button>
+        <div class="popup" id="inputPopup">
+            <div class="popup-content">
+                <input type="text" class="inputItem" id="nameInput" placeholder="Name"/><br />
+                <input type="number" class="inputItem" id="priceInput" placeholder="Price" /><br />
+                <input type="text" class="inputItem" id="descriptionInput" placeholder="Description" /><br />
+                <button class="addButton" onclick="addItem()">Add</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            Footer
+        </div>
+    </div>
+    <script>
+        shop.addNewProduct("tvset", 100, "this is product");
+        shop.addNewProduct("compuhter", 200, "this is product");
+        shop.addNewProduct("phone", 50, "this is product");
+        shop.addNewProduct("zed", 1, "this is product");
+        window.onload = fillTable;
+
+        function fillTable() {
+            var table = document.getElementById("productsTable");
+            var tableBody = "";
+            tableBody += '<th class="NColumn">N </th><th class="nameColumn" onclick="fillSortedByName()">Name</th><th class="priceColumn" onclick="fillSortedByPrice()">Price </th><th class="descriptionColumn">Description </th>';
+            var products = shop.getProducts();
+            products.forEach(function (item, i, arr) {
+                tableBody += '<tr><td>' + (i + 1) + '</td><td>' + item.productName + '</td><td>' + item.productPrice + '</td><td>' + item.productDescription + '</td><td>' + '<a href onclick="deleteProduct()" id=' + i + '> delete </a></td></tr>';
+            });
+            table.innerHTML = tableBody;
+        };
+
+        function deleteProduct() {
+            event.preventDefault();
+            shop.deleteProduct(event.srcElement.id);
+            fillTable();
+        };
+
+        function fillSortedByName() {
+            shop.sortByName();
+            fillTable();
+        };
+
+        function fillSortedByPrice() {
+            shop.sortByPrice();
+            fillTable();
+        };
+
+        $(document).ready(function () {   
+            $("#inputPopup").hide();
+        });
+
+        function PopUpShow() {
+            $("#inputPopup").show();
+        }
+
+        function addItem() {
+            var name = document.getElementById("nameInput").value;
+            var price = document.getElementById("priceInput").value;
+            var description = document.getElementById("descriptionInput").value;
+            shop.addNewProduct(name, price, description);
+            $("#inputPopup").hide();
+            document.getElementById("nameInput").value = "";
+            document.getElementById("priceInput").value = null;
+            document.getElementById("descriptionInput").value = "";
+            fillTable();
+        }
+    </script>
+</body>
+</html>
