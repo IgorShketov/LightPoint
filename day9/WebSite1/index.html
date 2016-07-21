@@ -29,10 +29,20 @@
             </div>
         </div>
 
+        <div class="popup" id="editPopup">
+            <div class="popup-content">
+                <input type="text" class="inputItem" id="nameEdit" placeholder="Name" /><br />
+                <input type="number" class="inputItem" id="priceEdit" placeholder="Price" /><br />
+                <input type="text" class="inputItem" id="descriptionEdit" placeholder="Description" /><br />
+                <button class="addButton" onclick="changeItem()">Edit</button>
+            </div>
+        </div>
+
         <div class="footer">
             Footer
         </div>
     </div>
+
     <script>
         shop.addNewProduct("tvset", 100, "this is product");
         shop.addNewProduct("compuhter", 200, "this is product");
@@ -41,13 +51,24 @@
         window.onload = fillTable;
 
         function fillTable() {
-            var table = document.getElementById("productsTable");
-            var tableBody = "";
-            tableBody += '<th class="NColumn">N </th><th class="nameColumn" onclick="fillSortedByName()">Name</th><th class="priceColumn" onclick="fillSortedByPrice()">Price </th><th class="descriptionColumn">Description </th>';
-            var products = shop.getProducts();
+            var table = document.getElementById("productsTable"),
+                tableBody = "",
+                products = shop.getProducts();
+
+            tableBody +='<th class="NColumn">N </th>' +
+                '<th class="nameColumn" onclick="fillSortedByName()">Name</th>' +
+                '<th class="priceColumn" onclick="fillSortedByPrice()">Price </th>' +
+                '<th class="descriptionColumn">Description </th>';
+
             products.forEach(function (item, i, arr) {
-                tableBody += '<tr><td>' + (i + 1) + '</td><td>' + item.productName + '</td><td>' + item.productPrice + '</td><td>' + item.productDescription + '</td><td>' + '<a href onclick="deleteProduct()" id=' + i + '> delete </a></td></tr>';
+                tableBody += '<tr><td>' + (i + 1) + '</td>' +
+                    '<td>' + item.productName + '</td>' +
+                    '<td>' + item.productPrice + '</td>' +
+                    '<td>' + item.productDescription + '</td>' +
+                    '<td>' + '<a href onclick="deleteProduct()" id=' + i + '> delete </a></td>' +
+                    '<td><a href onclick="changeProduct()" id=' + i + '> edit </a></td></tr>';
             });
+
             table.innerHTML = tableBody;
         };
 
@@ -69,6 +90,7 @@
 
         $(document).ready(function () {   
             $("#inputPopup").hide();
+            $("#editPopup").hide();
         });
 
         function PopUpShow() {
@@ -76,16 +98,62 @@
         }
 
         function addItem() {
-            var name = document.getElementById("nameInput").value;
-            var price = document.getElementById("priceInput").value;
-            var description = document.getElementById("descriptionInput").value;
+            var doc = document,
+                name = doc.getElementById("nameInput").value,
+                price = doc.getElementById("priceInput").value,
+                description = doc.getElementById("descriptionInput").value;
+
+            if (name == "" || price == "") {
+                if (name == "") {
+                    doc.getElementById("nameInput").className = "inputBad"
+                }
+                if (price == "") {
+                    doc.getElementById("priceInput").className = "inputBad"
+                }
+                return;
+            }
+
             shop.addNewProduct(name, price, description);
+
             $("#inputPopup").hide();
-            document.getElementById("nameInput").value = "";
-            document.getElementById("priceInput").value = null;
-            document.getElementById("descriptionInput").value = "";
+
+            doc.getElementById("nameInput").value = "";
+            doc.getElementById("priceInput").value = null;
+            doc.getElementById("descriptionInput").value = "";
+            doc.getElementById("priceInput").className = "inputItem"
+
             fillTable();
         }
+
+        function changeItem() {
+            var doc = document,
+                name = doc.getElementById("nameEdit").value,
+                price = doc.getElementById("priceEdit").value,
+                description = doc.getElementById("descriptionEdit").value;
+
+            shop.changeProduct(editPopup.itemNum, name, price, description);
+
+            $("#editPopup").hide();
+
+            fillTable();
+        }
+
+        function changeProduct() {
+            var doc = document,
+                _event = event,
+                productNum = _event.srcElement.id,
+                product = shop.getProduct(productNum);
+
+            _event.preventDefault();
+
+            doc.getElementById("nameEdit").value = product.productName;
+            doc.getElementById("priceEdit").value = product.productPrice;
+            doc.getElementById("descriptionEdit").value = product.productDescription;
+
+            editPopup.itemNum = productNum;
+
+            $("#editPopup").show();
+        };
     </script>
 </body>
 </html>

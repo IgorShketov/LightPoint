@@ -113,6 +113,16 @@ tr:nth-child(even) {
     width:90%;
 }
 
+.inputBad {
+    margin-left:5%;
+    margin-bottom:10px;
+    margin-top:10px;
+    width:90%;
+    border:solid;
+    border-width: 1px;
+    border-color:red;
+}
+
 .addButton {
     margin-left:30%;
     margin-bottom:10px;
