@@ -1,0 +1,16 @@
+﻿body {
+}
+
+.mainContent {
+    position:relative;
+    left:5%;
+    width:90%;
+}
+
+.tableHeader {
+    font-weight:bold;
+}
+
+.tableInfoHeader {
+    color:#255ce0;
+}

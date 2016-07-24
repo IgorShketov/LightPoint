@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html ng-app="personsApp">
+<head>
+    <title></title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="angular/init.js"></script>
+    <script src="angular/controllers/personsController.js"></script>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div class="mainContent" ng-controller="personsController">
+        <h1>Angularjs homework</h1>
+        <hr />
+        <!--filter input-->
+        <table class="table table-striped">
+            <thead>
+                <tr class="tableHeader">
+                    <td class="tableInfoHeader">Last Name</td>
+                    <td class="tableInfoHeader">First Name</td>
+                    <td class="tableInfoHeader">Age</td>
+                    <td class="tableInfoHeader">City</td>
+                    <td>
+                        <select class="form-control" ng-model="phoneSelect">
+                            <option>Home phone Number</option>
+                            <option >Fax</option>
+                        </select>
+                    </td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tr ng-repeat="person in persons">
+                <td>{{person.lastName}}</td>
+                <td>{{person.firstName}}</td>
+                <td>{{person.age}}</td>
+                <td>{{person.address.city}}</td>
+                <td>{{getPhone(person)}}</td>
+                <td>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="removePerson(person)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
