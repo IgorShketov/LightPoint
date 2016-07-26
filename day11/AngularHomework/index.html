@@ -2,20 +2,105 @@
 <html ng-app="personsApp">
 <head>
     <title></title>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.css" rel="stylesheet" />
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <script src="assets/js/bootstrap.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="angular/init.js"></script>
+    <script src="angular/services/personsService.js"></script>
     <script src="angular/controllers/personsController.js"></script>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
+
 <body>
     <div class="mainContent" ng-controller="personsController">
+        <div id="confirmDeleteModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Delete Person</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you shure you want to delete <b>{{persons[deletedPersonIndex].lastName + ' ' + persons[deletedPersonIndex].firstName}}</b> from list?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removePerson(deletedPersonIndex)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form name="inputForm" ng-submit="addNewPerson(newPerson, inputForm)" novalidate>
+            <div id="addPersonModal" class="modal fade" person-modal>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Add Person</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : inputForm.firstName.$invalid && !inputForm.firstName.$pristine }">
+                                        <label>First Name *</label>
+                                        <input class="form-control" name="firstName" type="text" required ng-model="newPerson._firstName" ng-pattern="/^[a-zA-Z]+$/" />
+                                        <p ng-show="(inputForm.firstName.$touched && inputForm.firstName.$invalid && !inputForm.firstName.$pristine) || (inputForm.firstName.$invalid && inputForm.$submitted)" class="help-block">First Name is required.</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : inputForm.lastName.$invalid && !inputForm.lastName.$pristine }">
+                                        <label>Last Name *</label>
+                                        <input class="form-control" name="lastName" type="text" required ng-model="newPerson._lastName" ng-pattern="/^[a-zA-Z]+$/" />
+                                        <p ng-show="(inputForm.lastName.$touched && inputForm.lastName.$invalid && !userForm.lastName.$pristine) || (inputForm.lastName.$invalid && inputForm.$submitted)" class="help-block">Last Name is required.</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : inputForm.age.$invalid && !inputForm.age.$pristine }">
+                                        <label>Age *</label>
+                                        <input class="form-control" name="age" type="text" required ng-model="newPerson._age" ng-pattern="/^\d+$/" />
+                                        <p ng-show="(inputForm.age.$touched && inputForm.age.$invalid && !userForm.age.$pristine) || (inputForm.age.$invalid && inputForm.$submitted)" class="help-block">Valid Age is required.</p>
+                                    </div>
+                                    <label>Street</label>
+                                    <input class="form-control" type="text" ng-model="newPerson._address.streetAddress" />
+                                    <label>City</label>
+                                    <input class="form-control" type="text" ng-model="newPerson._address.city" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>State</label>
+                                    <input class="form-control" type="text" ng-model="newPerson._address.state" />
+                                    <label>Postal Code</label>
+                                    <input class="form-control" type="text" ng-model="newPerson._address.postalCode" />
+                                    <div class="form-group" ng-class="{ 'has-error' : inputForm.homeNumber.$invalid && !inputForm.homeNumber.$pristine }">
+                                        <label>Home Number *</label>
+                                        <input class="form-control" name="homeNumber" type="text" required ng-model="newPerson._phoneNumber[0].number" ng-pattern="/^[\d-]+$/" />
+                                        <p ng-show="(inputForm.homeNumber.$touched && inputForm.homeNumber.$invalid && !userForm.homeNumber.$pristine) || (inputForm.age.$invalid && inputForm.$submitted)" class="help-block">Phone Number is required.</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : inputForm.fax.$invalid && !inputForm.fax.$pristine }">
+                                        <label>Fax *</label>
+                                        <input class="form-control" name="fax" type="text" required ng-model="newPerson._phoneNumber[1].number" ng-pattern="/^[\d-]+$/" />
+                                        <p ng-show="(inputForm.fax.$touched && inputForm.fax.$invalid && !userForm.fax.$pristine) || (inputForm.age.$invalid && inputForm.$submitted)" class="help-block">Fax is required.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
         <h1>Angularjs homework</h1>
         <hr />
-        <!--filter input-->
-        <table class="table table-striped">
+        <div class="filterArea">
+            <input type="text" ng-model="filterPattern" class="form-control" placeholder="Enter text to filter persons" />
+        </div>
+
+        <table class="table table-striped" ng-model="ind">
             <thead>
                 <tr class="tableHeader">
                     <td class="tableInfoHeader">Last Name</td>
@@ -25,13 +110,13 @@
                     <td>
                         <select class="form-control" ng-model="phoneSelect">
                             <option>Home phone Number</option>
-                            <option >Fax</option>
+                            <option>Fax</option>
                         </select>
                     </td>
                     <td>Actions</td>
                 </tr>
             </thead>
-            <tr ng-repeat="person in persons">
+            <tr ng-repeat="person in persons | meFilter:filterPattern">
                 <td>{{person.lastName}}</td>
                 <td>{{person.firstName}}</td>
                 <td>{{person.age}}</td>
@@ -41,12 +126,13 @@
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-                    <button type="button" class="btn btn-default" ng-click="removePerson(person)">
+                    <button type="button" ng-click="setDeletedPersonIndex($index)" class="btn btn-default" data-toggle="modal" data-target="#confirmDeleteModal">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </td>
             </tr>
         </table>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPersonModal">Add New Person</button>
     </div>
 </body>
 </html>
