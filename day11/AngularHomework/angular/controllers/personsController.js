@@ -9,21 +9,48 @@ function personsController($scope, personsService, $http) {
         $scope.persons = resolve;
     });
 
+    $scope.editPerson = {};
+
     $scope.phoneSelect = "Home phone Number";
     $scope.deletedPersonIndex;
+    $scope.editPersonIndex = 0;
 
     $scope.setDeletedPersonIndex = function (index) {
         $scope.deletedPersonIndex = index;
-    }
+    };
 
-    $scope.getPhone = function(person) {
+    $scope.setEditPerson = function (index) {
+        $scope.editPersonIndex = index;
+        $scope.editPerson._age = $scope.persons[index].age;
+        $scope.editPerson._address = $scope.persons[index].address;
+        $scope.editPerson._phoneNumber = $scope.persons[index].phoneNumber;
+    };
+
+    $scope.changePerson = function (form) {
+        if (form.$valid) {
+            $scope.persons[$scope.editPersonIndex].age = $scope.editPerson._age;
+            $scope.persons[$scope.editPersonIndex].address = $scope.editPerson._address;
+            $scope.persons[$scope.editPersonIndex].phoneNumber = $scope.editPerson._phoneNumber;
+
+            form.$setPristine();
+            form.$setUntouched();
+
+            delete $scope.editPerson._age;
+            delete $scope.editPerson._address;
+            delete $scope.editPerson._phoneNumber;
+
+            $scope.dismiss();
+        }
+    };
+
+    $scope.getPhone = function (person) {
         if ($scope.phoneSelect == "Home phone Number") {
             return person.phoneNumber[0].number;
         }
         else if ($scope.phoneSelect == "Fax") {
             return person.phoneNumber[1].number;
         }
-    }
+    };
 
     function clearFields(person) {
         delete person._firstName;
@@ -31,11 +58,10 @@ function personsController($scope, personsService, $http) {
         delete person._age;
         delete person._address;
         delete person._phoneNumber;
-    }
+    };
 
     $scope.addNewPerson = function (person, form) {
-        if(form.$valid)
-        {
+        if (form.$valid) {
             var newPerson = {};
 
             newPerson.id = 1;
@@ -50,15 +76,11 @@ function personsController($scope, personsService, $http) {
             form.$setPristine();
             form.$setUntouched();
 
-            $http.put('angular/models/persons.json', $scope.persons).then(function (data) {
-                console.log('done');
-            });
-
             $scope.persons.push(newPerson);
             $scope.dismiss();
             clearFields(person);
         }
-    }
+    };
 
     $scope.removePerson = function (index) {
         $scope.persons.splice(index, 1);
