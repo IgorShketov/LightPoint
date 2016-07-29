@@ -1,0 +1,4 @@
+xamarinHomework.MainActivity, xamarinHomework;md517b74b9b36ab689b24c9018ae65add77.MainActivity
+xamarinHomework.MainActivity, xamarinHomework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md517b74b9b36ab689b24c9018ae65add77.MainActivity
+xamarinHomework.MainActivity;md517b74b9b36ab689b24c9018ae65add77.MainActivity
+xamarinhomework.MainActivity;md517b74b9b36ab689b24c9018ae65add77.MainActivity
